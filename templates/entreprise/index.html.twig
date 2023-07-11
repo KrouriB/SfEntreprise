@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des entreprises{% endblock %}
+
+{% block body %}
+    <h1>Liste des entreprises</h1>
+    {# Bonjour {{ name }} !                 Les {{}} servent a faire des echo #}
+    {# {% for element in tab %}             début boucle for(each) en twig #}
+        {# <br>{{element}} #}
+    {# {% endfor %}                         fin boucle for(each) #}
+    {% for entreprise in entreprises %}
+        {# <br><b>{{entreprise.raisonSocial}}</b> {{' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')'}}
+                                            {{ ICI_NOM_VARIABLE.ICI_ELEMENT_A_RECUPERER }} -> <?= $ICI_NOM_VARIABLE->ICI_ELEMENT_A_RECUPERER() => #}
+        <br><b>{{entreprise}}</b>
+    {% endfor %}               
+{% endblock %}
