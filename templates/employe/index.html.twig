@@ -4,8 +4,12 @@
 
 {% block body %}
     <h1>Liste des employes</h1>
+    <a href="{{ path('new_employe')}}" class="btn btn-success">Ajoutez une employé</a>
     
     {% for employe in employes %}
-        <br><a href="{{ path('show_employe',{'id': employe.id})}}">{{employe}}</a> ({{employe.entreprise.raisonSocial}}) {# ici chainage pour recuperer l'entreprise d'un employer #}
+        <br><a href="{{ path('show_employe',{'id': employe.id})}}">{{employe}}</a>
+        ({{employe.entreprise.raisonSocial}})                                                   {# ici chainage pour recuperer l'entreprise d'un employer #}
+        <a class="btn btn-warning" href="{{ path('edit_employe',{'id': employe.id})}}">Edit</a>
+        <a href="{{ path('delete_employe',{'id': employe.id})}}" class="btn btn-danger">Supprimer</a>
     {% endfor %}               
 {% endblock %}

@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Liste des entreprises</h1>
+    <a href="{{ path('new_entreprise')}}" class="btn btn-success">Ajoutez une entreprise</a>
     {# Bonjour {{ name }} !                 Les {{}} servent a faire des echo #}
     {# {% for element in tab %}             début boucle for(each) en twig #}
         {# <br>{{element}} #}
@@ -12,5 +13,7 @@
         {# <br><b>{{entreprise.raisonSocial}}</b> {{' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')'}}
                                             {{ ICI_NOM_VARIABLE.ICI_ELEMENT_A_RECUPERER }} -> <?= $ICI_NOM_VARIABLE->ICI_ELEMENT_A_RECUPERER() => #}
         <br><a href="{{ path('show_entreprise',{'id': entreprise.id})}}">{{entreprise}}</a>
+        <a class="btn btn-warning" href="{{ path('edit_entreprise',{'id': entreprise.id})}}">Edit</a>
+        <a href="{{ path('delete_entreprise',{'id': entreprise.id})}}" class="btn btn-danger">Supprimer</a>
     {% endfor %}               
 {% endblock %}

@@ -18,8 +18,8 @@ class EmployeType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
+                'attr' => [                             //a ouvrire pour mettre une class
+                    'class' => 'form-control'           //class ajouter
                 ]
             ])
             ->add('prenom', TextType::class, [
@@ -34,12 +34,13 @@ class EmployeType extends AbstractType
                 ]
             ])
             ->add('dateEmbauche', DateType::class, [
-                'widget' =>'single_text',
+                'widget' =>'single_text',               // pour l'affichage des dates
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
             ->add('ville', TextType::class, [
+                'required' => false,                    // pour chant nullable
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -51,7 +52,7 @@ class EmployeType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Valider', SubmitType::class, [
+            ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'
                 ]
