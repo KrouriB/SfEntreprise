@@ -68,6 +68,11 @@ class Entreprise
         return $this;
     }
 
+    public function getDateCreationFr(): ?string // pour ne pas passer avec le filter de twig
+    {
+        return $this->dateCreation->format("d/m/Y");
+    }
+
     public function getAdresse(): ?string
     {
         return $this->adresse;
@@ -132,6 +137,11 @@ class Entreprise
         }
 
         return $this;
+    }
+
+    public function getAdresseComplete()
+    {
+        return $this->adresse." ".$this->cp." ".$this->ville;
     }
 
     public function __toString()

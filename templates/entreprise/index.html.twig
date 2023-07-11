@@ -11,6 +11,6 @@
     {% for entreprise in entreprises %}
         {# <br><b>{{entreprise.raisonSocial}}</b> {{' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')'}}
                                             {{ ICI_NOM_VARIABLE.ICI_ELEMENT_A_RECUPERER }} -> <?= $ICI_NOM_VARIABLE->ICI_ELEMENT_A_RECUPERER() => #}
-        <br><b>{{entreprise}}</b>
+        <br><a href="{{ path('show_entreprise',{'id': entreprise.id})}}">{{entreprise}}</a>
     {% endfor %}               
 {% endblock %}
