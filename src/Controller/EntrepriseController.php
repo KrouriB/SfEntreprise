@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Entreprise;                                                               // if index(EntityManagerInterface $entityManager)
-use App\Repository\EntrepriseRepository;                                                    // if index(EntrepriseRepository $entrepriseRepository)
-// use Doctrine\ORM\EntityManagerInterface;                                                 // if index(EntityManagerInterface $entityManager)
+use App\Form\EntrepriseType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;                                                 // if index(EntityManagerInterface $entityManager)
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Entreprise;                                                               // if index(EntityManagerInterface $entityManager)
+use App\Repository\EntrepriseRepository;                                                    // if index(EntrepriseRepository $entrepriseRepository)
 
 class EntrepriseController extends AbstractController
 {
@@ -22,6 +24,29 @@ class EntrepriseController extends AbstractController
             'entreprises' => $entreprises
             // 'name' => $name,
             // 'tab' => $tableau
+        ]);
+    }
+
+    #[Route('/entreprise/new', name: 'new_entreprise')]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $entreprise = new Entreprise();
+
+        $form = $this->createForm(EntrepriseType::class, $entreprise);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entreprise = $form->getData();
+            $entityManager->persist($entreprise);   // prepare PDO
+            $entityManager->flush();                // execute PDO
+
+            return $this->redirectToRoute('app_entreprise');
+        }
+
+        return $this->render('entreprise/new.html.twig', [
+            'formAddEntreprise' => $form
         ]);
     }
 
