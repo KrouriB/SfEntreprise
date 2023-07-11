@@ -19,33 +19,6 @@
 CREATE DATABASE IF NOT EXISTS `sfentreprisebrice` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `sfentreprisebrice`;
 
--- Listage de la structure de table sfentreprisebrice. doctrine_migration_versions
-CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
--- Listage des données de la table sfentreprisebrice.doctrine_migration_versions : ~0 rows (environ)
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-	('DoctrineMigrations\\Version20230711073836', '2023-07-11 07:38:54', 130);
-
--- Listage de la structure de table sfentreprisebrice. employe
-CREATE TABLE IF NOT EXISTS `employe` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `entreprise_id` int NOT NULL,
-  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_naissance` datetime NOT NULL,
-  `date_embauche` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_F804D3B9A4AEAFEA` (`entreprise_id`),
-  CONSTRAINT `FK_F804D3B9A4AEAFEA` FOREIGN KEY (`entreprise_id`) REFERENCES `entreprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Listage des données de la table sfentreprisebrice.employe : ~0 rows (environ)
-
 -- Listage de la structure de table sfentreprisebrice. entreprise
 CREATE TABLE IF NOT EXISTS `entreprise` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -55,26 +28,13 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `cp` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ville` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfentreprisebrice.entreprise : ~0 rows (environ)
-
--- Listage de la structure de table sfentreprisebrice. messenger_messages
-CREATE TABLE IF NOT EXISTS `messenger_messages` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `headers` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `available_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `delivered_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
-  PRIMARY KEY (`id`),
-  KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
-  KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
-  KEY `IDX_75EA56E016BA31DB` (`delivered_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Listage des données de la table sfentreprisebrice.messenger_messages : ~0 rows (environ)
+-- Listage des données de la table sfentreprisebrice.entreprise : ~3 rows (environ)
+INSERT INTO `entreprise` (`id`, `raison_social`, `date_creation`, `adresse`, `cp`, `ville`) VALUES
+	(1, 'Elan Formation', '1993-07-10 10:38:00', '14 rue du Rhone', '67100', 'Strasbourg'),
+	(2, 'COACTIS', '2015-07-11 10:37:36', '10 rue Charmonie', '67200', 'Strasbourg'),
+	(3, 'ELAN FORMATION ORIGINS', '2023-07-11 10:38:33', '202 rue de Colmar', '67100', 'Strasbourg');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
